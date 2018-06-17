@@ -1,0 +1,342 @@
+@charset "UTF-8";
+* {
+  outline: 1px solid #f00;
+}
+
+h5,
+h3 {
+  margin: 0;
+}
+
+.clear {
+  clear: both;
+}
+
+ul {
+  -webkit-padding-start: 0;
+  list-style: none;
+}
+
+body {
+  background-color: #E1E1E1;
+  font-family: arial;
+}
+
+.container {
+  width: 620px;
+  margin: auto;
+}
+
+.itemsBox {
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  background: #4A90E2;
+}
+
+nav ul {
+  font-size: 0;
+}
+
+nav ul li {
+  width: 33.33%;
+  padding: 23px 0;
+  display: inline-block;
+  font-size: 24px;
+  text-align: center;
+  color: #00408B;
+  cursor: pointer;
+}
+
+nav ul li:hover {
+  color: #fff;
+}
+
+nav ul li.active {
+  color: #fff;
+  border-bottom: 5px solid #00408B;
+}
+
+.addexp-input {
+  background: #fff;
+  flex-direction: column;
+  border-radius: 5px;
+  margin: 24px 0 24px;
+  height: 91px;
+  transition: .6s;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 4px 0 #C8C8C8;
+  order: -1;
+}
+
+.addexp-input.active {
+  background: #F2F2F2;
+  height: 501px;
+}
+
+.addexp-input .AddTask {
+  width: 75%;
+  display: inline-block;
+  padding: 32px 0 32px 32px;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.addexp-input .edit {
+  display: inline-block;
+  position: absolute;
+  right: -20%;
+  top: 35px;
+  font-size: 0;
+  transition: .6s;
+}
+
+.addexp-input .edit.active {
+  right: 5%;
+}
+
+.addexp-input .edit li {
+  display: inline-block;
+  font-size: 24px;
+  height: 24px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.addexp-input .edit li:nth-child(2) {
+  color: #4A90E2;
+}
+
+.addexp-list {
+  background: #F2F2F2;
+  border-radius: 0 0 5px 5px;
+  border-top: 2px solid #C8C8C8;
+  position: relative;
+}
+
+.addexp-list.active:after {
+  content: '';
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: -93px;
+  right: 49px;
+}
+
+.addexp-list ul {
+  width: 80%;
+  margin: auto;
+}
+
+.addexp-list ul li {
+  padding: 10px 0 0;
+}
+
+.addexp-list ul li h5 {
+  font-size: 16px;
+  padding: 10px 0;
+  font-weight: 500;
+}
+
+.addexp-list ul li i {
+  margin-right: 5px;
+}
+
+.addexp-list ul li .upload_cover {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-color: #C8C8C8;
+  text-align: center;
+  line-height: 32px;
+  color: #fff;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.addexp-list ul li .upload_cover #upload_input {
+  display: none;
+}
+
+.addexp-list ul textarea {
+  width: 100%;
+  height: 120px;
+  resize: none;
+  border: none;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.btn-Cancel {
+  border-radius: 0 0 0 5px;
+  color: #D0021B;
+}
+
+.btn-addTask {
+  border-radius: 0 0 5px 0;
+  color: #fff;
+  background-color: #4A90E2;
+}
+
+.btn-addTask,
+.btn-Cancel {
+  outline: none;
+  font-size: 24px;
+  cursor: pointer;
+  width: 310px;
+  height: 60px;
+  float: left;
+  border: 0;
+  margin-top: 20px;
+}
+
+.items-list {
+  order: 2;
+  transition: .6s;
+  height: 123px;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+.items-list.active {
+  height: 533px;
+}
+
+.items-list.starActive {
+  order: 1;
+}
+
+.items-list .item {
+  box-sizing: border-box;
+  position: relative;
+  width: 620px;
+  padding: 30px;
+  background-color: #F2F2F2;
+  border-radius: 5px;
+}
+
+.items-list .item.starActive {
+  background-color: #FFF2DC;
+}
+
+.items-list .item .drag-dot {
+  position: absolute;
+  left: 5px;
+  top: 33px;
+  cursor: move;
+}
+
+.items-list .item .drag-dot li {
+  width: 5px;
+  height: 5px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.items-list .item .drag-dot li + li {
+  margin-top: 5px;
+}
+
+.items-list .item .checkBox-cover {
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 24px;
+}
+
+.items-list .item .checkBox-cover.active {
+  background-color: #4A90E2;
+  color: #fff;
+}
+
+.items-list .item .checkBox-cover .fa-check {
+  display: none;
+}
+
+.items-list .item .checkBox-cover .fa-check.active {
+  display: inline-block;
+}
+
+.items-list .item .checkBox-cover input {
+  display: none;
+}
+
+.items-list .item input[type=text].title-box {
+  width: 70%;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 600;
+  font-family: 微軟正黑體;
+  border: none;
+}
+
+.items-list .item input[type=text].title-box.completed {
+  text-decoration: line-through;
+}
+
+.items-list .item input[type=text].title-box:disabled {
+  background-color: transparent;
+  border: none;
+}
+
+.items-list .item i {
+  vertical-align: middle;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.items-list .item i.fa-pencil-alt {
+  margin-right: 20px;
+}
+
+.items-list .item i.fa-pencil-alt.active {
+  color: #4A90E2;
+}
+
+.items-list .item i.fa-star {
+  margin-right: 20px;
+}
+
+.items-list .item i.fa-star.active {
+  color: #F5A623;
+}
+
+.items-list .item .icons {
+  margin: 10px 0 0 28px;
+  font-size: 16px;
+}
+
+.items-list .item .icons li {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.items-list .item .icons li + li {
+  margin-left: 10px;
+}
+
+.items-list .item .icons li i {
+  font-size: 16px;
+}
+
+.items-list .item .icons li .icons-style {
+  margin-left: 5px;
+}
+
+.chosen {
+  -webkit-box-shadow: 0 5px 15px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 15px 6px rgba(0, 0, 0, 0.5);
+}
+/*# sourceMappingURL=style.css.map */

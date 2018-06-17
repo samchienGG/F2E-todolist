@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>F2E week1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Normalize.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="app">  
+      <nav>
+        <div class="container">
+          <ul>
+            <li :class="{ 'active':visibility == 'all'}" @click="visibility = 'all'">My Tasks</li>
+            <li :class="{ 'active':visibility == 'InProgress'}" @click="visibility = 'InProgress'">In Progress</li>
+            <li :class="{ 'active':visibility == 'Completed'}" @click="visibility = 'Completed'">Completed</li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container itemsBox" id="itemsBox">
+        <div class="addexp-input" :class="addState ? 'active' : ''">
+          <!-- 新增輸入欄 -->
+          <input type="text" placeholder="+ Add Task" class="AddTask" v-model="newTodo" @click="addStateIsActive" >
+          <ul class="edit" :class="addState ? 'active' : ''">
+            <!-- 星星 -->
+            <li><i class="far fa-star"></i></li>
+            <li><i class="fas fa-pencil-alt"></i></li>
+          </ul>
+          <div class="addexp-list">
+            <ul>
+              <li>
+                <!-- 時間 -->
+                <h5><i class="far fa-calendar-alt"></i>Deadline</h5>
+                開始時間 <input type="date" id="startDate" v-model="startDate">  結束時間 <input type="date" id="endDate" v-model="endDate">
+              </li>
+              <li>
+                <!-- 檔案上傳 -->
+                <h5><i class="far fa-sticky-note"></i>File</h5>
+                <label class="upload_cover">
+                  <input type="file" name="+" id="upload_input">
+                  ➕
+                </label>
+              </li>
+              <li>
+                <!-- 留言 -->
+                <h5><i class="far fa-comment-dots"></i>Comment</h5>
+                <textarea name="" id="" placeholder="Type your memo here..." v-model="comment"></textarea>
+              </li>
+            </ul>
+            <!-- 取消按鈕 -->
+            <input type="button" value="x Cancel" class="btn-Cancel" @click="cancelBtnClick" :class="addState ? 'active' : ''">
+            <!-- 新增按鈕 -->
+            <input type="button" value="+ Add Task" class="btn-addTask" @click="addTodo">
+            <div class="clear"></div>
+          </div>
+        </div>
+        <!-- todo清單 -->
+        <div class="items-list" id="items-list" v-for="(item, index) in filteredTodo" :class="{ active: item.editState, starActive: item.starState}" :key="item.id">
+          <div class="item" :class="{ starActive: item.starState}">
+            <!-- 拖拉ICON -->
+            <ul class="drag-dot">
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+            <!-- 勾選icon -->
+            <label :for="item.id" class="checkBox-cover" :class="{ active: item.completed }">
+              <i class="fas fa-check" :class="{ active: item.completed }"></i>
+              <input type="checkbox" v-model="item.completed" :id="item.id">
+            </label>
+            <!-- 標題-input -->
+            <input type="text" class="title-box" v-model="item.title" :disabled="item.btndisabled" :class="{ completed: item.completed }">
+            <!-- 星星icon -->
+            <i class="far fa-star" @click="starIsActive(index)" :class="item.starState ? 'active' : ''"></i>
+            <!-- 編輯icon -->
+            <i class="fas fa-pencil-alt" @click="editCheck(item, index)" :class="item.editState ? 'active' : ''" ></i>
+            <!-- 數據icon -->
+            <ul class="icons">
+              <!-- 時間 -->
+              <li><i class="far fa-calendar-alt"></i><span class="icons-style">{{ item.startDate + '~' + item.endDate }}</span></li>
+              <li><i class="far fa-sticky-note"></i><span class="icons-style"></span></li>
+              <!-- 留言 -->
+              <li v-if="!item.comment==''"><i class="far fa-comment-dots"></i></li>
+            </ul>
+          </div>
+          <!-- 編輯區塊 -->
+          <div class="addexp-list" :class="{ active: item.editState}">
+              <ul>
+                <li>
+                  <!-- 時間 -->
+                  <h5><i class="far fa-calendar-alt"></i>Deadline</h5>
+                  開始時間 <input type="date" id="startDate" v-model="item.startDate">  結束時間 <input type="date" id="endDate" v-model="item.endDate">
+                </li>
+                <li>
+                  <!-- 檔案上傳 -->
+                  <h5><i class="far fa-sticky-note"></i>File</h5>
+                  <label class="upload_cover">
+                    <input type="file" name="+" id="upload_input">
+                    ➕
+                  </label>
+                </li>
+                <li>
+                  <!-- 留言 -->
+                  <h5><i class="far fa-comment-dots"></i>Comment</h5>
+                  <textarea name="" id="" placeholder="Type your memo here..." v-model="item.comment"></textarea>
+                </li>
+              </ul>
+              <!-- 取消按鈕 -->
+              <input type="button" value="x Cancel" class="btn-Cancel"  @click="cancelEdit(item, index)" :class="addState ? 'active' : ''">
+              <!-- 儲存按鈕 -->
+              <input type="button" value="+ Save" class="btn-addTask" @click="saveData(index)" :class="item.btndisabled ? 'active' : ''">
+              <div class="clear"></div>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://rubaxa.github.io/Sortable/Sortable.js"></script>
+<script src="main.js"></script>

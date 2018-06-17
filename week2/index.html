@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>F2E week2</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <!-- css -->
+        <link rel="stylesheet" href="Normalize.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="app">
+            <div class="searchBar">
+            <div class="container">
+                <a href="#" class="logo">HaveFun</a>
+                <input type="text" placeholder="Explore your own activities">
+            </div>
+        </div>
+        <div class="container">
+            <div class="sideFilter">
+                <div class="location">
+                    <h4>選擇行政區</h4>
+                    <!-- 行政區篩選 -->
+                    <select name="" id="" v-model="selectedLocation">
+                        <option v-for="(item, index) in district" :value="item">{{ item }}</option>
+                    </select>
+                </div>
+                <div class="categories">
+                    <h4>篩選條件</h4>
+                    <ul>
+                        <li>
+                            <input type="checkbox" id="freeTicket" v-model="freeTicket">
+                            <label for="freeTicket">免費參觀</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="allDayOpen" v-model="allDayOpen">
+                            <label for="allDayOpen">全天候開放</label>
+                        </li>
+                    </ul>
+                </div>  
+            </div>
+            <div class="main">
+                <p>查詢到<span class="focusColor">{{ sortData.length }}</span>筆資料</p>
+                <!-- 標籤    -->
+                <span class="tag-lists" v-for="(tags, index) in addTag">{{ tags }}<i class="far fa-times-circle"></i></span>
+                <!-- 資訊 -->
+                <div class="item" v-for="(item, index) in sortData">
+                    <div class="item-picture">
+                        <img :src="item.Picture1" alt="">
+                    </div>
+                    <div class="item-info">
+                        <h3>{{ item.Name }}</h3>
+                    <p>{{ item.Description }}</p>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i>{{ item.Add }}</li>
+                        <li><i class="far fa-calendar-alt"></i>{{ item.Opentime }}</li>
+                    </ul>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="clear"></div>
+            <ul class="pagination">
+                <li class="pre"><</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li class="next">></li>
+            </ul>
+        </div>
+        </div>
+        
+        
+    </body>
+    <!-- js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src="main.js"></script>
+</html>
