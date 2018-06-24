@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>week3-admin order</title>
+    <!-- css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand font-weight-bol" href="#">Shoptime </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link font-weight-bol" href="index.html">HOME
+                        <!-- <span class="sr-only">(current)</span> -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bol" href="orders.html">ORDERS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bol" href="product.html">PRODUCT</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">ADMIN</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container index">
+        <div class="overview mb-3">
+            <div class="title align-self-end">
+                <h2 class="font-weight-bold">OVERVIEW</h2>
+            </div>
+            <!-- 圖表條件 -->
+            <div class="filter align-self-end ml-auto">
+                <span>2018/6/6</span>
+                <i class="fas fa-caret-right ml-1 mr-1"></i>
+                <span>2018/6/13</span>
+                <select name="" id="" class="ml-5" v-model="filterDate">
+                    <option :value="item" v-for="item in filterData">{{ item }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row all_total">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">TOTAL REVENUE</h5>
+                        <p class="card-text font-weight-bold" style="color:#7ED321">54,540</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">TOTAL COST</h5>
+                        <p class="card-text font-weight-bold" style="color:#D0021B">12,660</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">NET INCOME</h5>
+                        <p class="card-text font-weight-bold" style="color:#4A90E2">41,880</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 圖表 -->
+        <div class="row mt-4">
+            <div class="col-12 rounded" id="chart">
+                <canvas id="myChart" class="rounded p-5"></canvas>
+            </div>
+        </div>
+        <div class="row mt-4 mb-4 bottom_block">
+            <div class="col-6 website">
+                <div class="card border-0 p-5">
+                    <h3 class="font-weight-bold">Transaction Website</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item border-top-0 pl-0 pr-0">
+                            <span class="icon">
+                                <i class="fab fa-facebook mr-2"></i>Facebook.com</span>
+                            <span class="number font-weight-bold">45,836</span>
+                            <span class="percent"><i class="fas fa-arrow-up"></i>20%</span>
+                        </li>
+                        <li class="list-group-item pl-0 pr-0">
+                            <span class="icon">
+                                <i class="fab fa-google mr-2"></i>google.com</span>
+                            <span class="number font-weight-bold">23,582</span>
+                            <span class="percent"><i class="fas fa-arrow-up"></i>12%</span>
+                        </li>
+                        <li class="list-group-item pl-0 pr-0">
+                            <span class="icon">
+                                <i class="fab fa-amazon mr-2"></i>amazon.com</span>
+                            <span class="number font-weight-bold">2,489</span>
+                            <span class="percent" style="color:#D0021B"><i class="fas fa-arrow-down"></i>15%</span>
+                        </li>
+                        <li class="list-group-item pl-0 pr-0">
+                            <span class="icon">
+                                <i class="fab fa-wordpress-simple mr-2"></i>Wordpress.com</span>
+                            <span class="number font-weight-bold">1,057</span>
+                            <span class="percent" style="color:#D0021B"><i class="fas fa-arrow-down"></i>30%</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6 orders">
+                <div class="card border-0 p-5">
+                    <h3 class="font-weight-bold">Latest Orders</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item border-top-0 pl-0 pr-0" v-for="item in 3">
+                            <div class="card flex-md-row border-0">
+                                <img class="card-img-top rounded-0" src="https://fakeimg.pl/100x100/ff0000,128/000,255" alt="Card image cap">
+                                <div class="card-body pb-0 pt-0">
+                                    <p class="card-title h5 font-weight-bold">Vintage T-shirt</p>
+                                    <p class="card-text">2018/6/13  13:42</p>
+                                    <p class="mb-0">Belle Willis</p>
+                                </div>
+                                <div class="card-total text-right align-self-end">
+                                    <p class="price_title mb-0">Total</p>
+                                    <p class="price font-weight-bold mb-0">3,200</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+    <script src="faker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js'></script>
+    <script src="main.js"></script>
+</body>
+</html>

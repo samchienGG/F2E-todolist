@@ -1,0 +1,181 @@
+body {
+  background-color: #F2F2F2;
+}
+
+.index .overview {
+  height: 58px;
+  display: flex;
+}
+
+.index .overview .title h2 {
+  font-size: 24px;
+}
+
+.index .overview .filter {
+  color: #9B9B9B;
+}
+
+.index .overview .filter .fas {
+  color: #000;
+}
+
+.index .overview .filter select {
+  background-color: transparent;
+}
+
+.index .all_total .card {
+  background: #FFFFFF;
+  box-shadow: 0 0 10px 5px #EBEBEB;
+}
+
+.index .all_total .card .card-title {
+  font-size: 16px;
+}
+
+.index .all_total .card .card-text {
+  font-size: 36px;
+}
+
+.index #chart #myChart {
+  background-color: #fff;
+  box-shadow: 0 0 10px 5px #EBEBEB;
+  width: 100%;
+  height: 600px;
+}
+
+.index .bottom_block .col-6 > .card {
+  height: 570px;
+}
+
+.index .bottom_block .card {
+  box-shadow: 0 0 10px 5px #EBEBEB;
+}
+
+.index .bottom_block .website .list-group-item {
+  display: flex;
+  height: 110px;
+}
+
+.index .bottom_block .website .list-group-item span {
+  align-self: center;
+}
+
+.index .bottom_block .website .list-group-item span:nth-of-type(1) {
+  width: 40%;
+}
+
+.index .bottom_block .website .list-group-item span:nth-of-type(2), .index .bottom_block .website .list-group-item span:nth-of-type(3) {
+  width: 30%;
+  text-align: right;
+}
+
+.index .bottom_block .website .list-group-item span.icon {
+  font-size: 16px;
+  color: #9B9B9B;
+}
+
+.index .bottom_block .website .list-group-item span.icon i {
+  color: #000;
+  font-size: 50px;
+  vertical-align: middle;
+}
+
+.index .bottom_block .website .list-group-item span.social {
+  font-size: 16px;
+}
+
+.index .bottom_block .website .list-group-item span.number {
+  font-size: 20px;
+}
+
+.index .bottom_block .website .list-group-item span.percent {
+  color: #7ED321;
+  font-size: 16px;
+}
+
+.index .bottom_block .orders .card .list-group-item .card {
+  box-shadow: none;
+}
+
+.index .bottom_block .orders .card .card-img-top {
+  width: auto;
+}
+
+.index .bottom_block .orders .card .card-body h5 {
+  font-size: 20px;
+}
+
+.index .bottom_block .orders .card .card-total .price_title {
+  font-size: 14px;
+}
+
+.index .bottom_block .orders .card .card-total .price {
+  font-size: 20px;
+}
+
+.orders .edit_block {
+  position: relative;
+}
+
+.orders .edit_block .edittitle {
+  cursor: pointer;
+}
+
+.orders .edit_block .edittitle label {
+  cursor: pointer;
+}
+
+.orders .edit_block .edit-ul {
+  box-shadow: 1px 2px 10px 0;
+  width: 150px;
+  position: absolute;
+  top: 100%;
+  cursor: pointer;
+}
+
+.orders .edit_block .edit-ul label {
+  cursor: pointer;
+}
+
+.orders .data_block tbody tr {
+  height: 74px;
+}
+
+.orders .data_block tbody tr.Done {
+  text-decoration: line-through;
+}
+
+.orders .data_block tbody select {
+  color: #fff;
+  outline: none;
+}
+
+.orders .data_block tbody select.bg-Paid {
+  background-color: #7ED321;
+}
+
+.orders .data_block tbody select.bg-Unpaid {
+  background-color: #9B9B9B;
+}
+
+.orders .data_block tbody select.bg-Shipping {
+  background-color: #F5A623;
+}
+
+.orders .data_block tbody select.bg-Done {
+  background-color: #4A90E2;
+}
+
+.product .popup {
+  display: none;
+}
+
+.product .popup .d-flex {
+  color: #fff;
+  width: 100%;
+}
+
+.product .popup .d-flex .fas {
+  font-size: 34px;
+}
+/*# sourceMappingURL=style.css.map */
