@@ -13,7 +13,11 @@ var app = new Vue({
         info:[]
     },
     methods:{
-        
+        pagination:function () {
+            var index = this.sortData.length;
+            var page = Math.floor(index / 10);
+            console.log(index,page);
+        }
     },
     computed:{
         data:function () {
@@ -70,6 +74,7 @@ var app = new Vue({
                 return [];
               }
         }
+        
         
 
     },
