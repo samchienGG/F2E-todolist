@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- css -->
+    <link rel="stylesheet" href="Normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="index" v-if="arrowIsActive">
+            <div class="header">
+                <p>CCCLOTHES</p>
+                <h1>MEN’S TOPS</h1>
+            </div>
+            <div class="item01">
+                <div class="item_box" @click="handlerArrow">
+                    <div class="border_box"></div>
+                    <h2 class="title">LINEN BLAZER</h2>
+                    <div class="number">01</div>
+                    <div class="pattern"></div>
+                    <h4 class="slogan">Men’s outfit</h4>
+                </div>
+            </div>
+            <div class="item02">
+                <div class="border_box">
+                    <div class="number">02</div>
+                </div>
+                <div class="item_box" @click="handlerArrow">
+                    <h2 class="title">FREELIFT</h2>
+                    <div class="pattern"></div>
+                    <h4 class="slogan">Men’s basics</h4>
+                </div>
+            </div>
+            <div class="item03">
+                <div class="item_box" @click="handlerArrow">
+                    <div class="border_box"></div>
+                    <h2 class="title">SUPER SKINNY</h2>
+                    <div class="number">03</div>
+                    <div class="pattern"></div>
+                    <h4 class="slogan">Men’s pattern shirts</h4>
+                </div>
+            </div>
+            <div class="item04">
+                <div class="item_box" @click="handlerArrow">
+                    <div class="border_box"></div>
+                    <h2 class="title">DENIM</h2>
+                    <div class="number">04</div>
+                    <div class="pattern"></div>
+                    <h4 class="slogan">Men’s cadual</h4>
+                </div>
+            </div>
+            <div class="item05">
+                <h2 class="title">SWEATSHIRTS</h2>
+                <div class="item_box" @click="handlerArrow">
+                    <div class="border_box">
+                        <div class="number">05</div>
+                    </div>
+                    <div class="pattern"></div>
+                    <h4 class="slogan">Men’s jacket</h4>
+                </div>
+            </div>
+            <div class="item06">
+                <div class="item_box" @click="handlerArrow">
+                    <div class="border_box"></div>
+                    <h2 class="title">VINTAGE DENIM</h2>
+                    <div class="number">06</div>
+                    <div class="pattern"></div>
+                    <h4 class="slogan">Men’s classic</h4>
+                </div>
+            </div>
+            <div class="item07">
+                <div class="number">07</div>
+                <div class="item_box" @click="handlerArrow">
+                    <div class="border_box"></div>
+                    <h2 class="title">EDITION</h2>
+
+                    <div class="pattern"></div>
+                    <h4 class="slogan">Men’s shirts</h4>
+                </div>
+            </div>
+        </div>
+        <div class="content" v-else>
+            <div class="arrow">
+                <p class="arrow_text" @click="handlerArrow" ><span>CCCLOTHES</span></p>
+            </div>
+            <div class="content_img">
+                <h2 class="title">VINTAGE</h2>
+                <div class="number">06</div>
+            </div>
+            <div class="content_text">
+                <h2>VINTAGE DENIM</h2>
+                <h3>Kogi Cosby sweater ethical squid irony</h3>
+                <p>In the tumultuous business of cutting-in and attending to a whale, there is much running backwards and forwards
+                    among the crew. Now hands are wanted here, and then again hands are wanted there. There is no staying
+                    in any one place; for at one and the same time everything has to be done everywhere. It is much the same
+                    with him who endeavors the description of the scene.</p>
+                <p>We must now retrace our way a little. It was mentioned that upon first breaking ground in the whale's back,
+                    the blubber-hook was inserted into the original hole there cut by the spades of the mates. But how did
+                    so clumsy and weighty a mass as that same hook get fixed in that hole? It was inserted there by my particular
+                    friend Queequeg, whose duty it was, as harpooneer.</p>
+            </div>
+            <div class="content_bottom">
+                <div class="block_3">
+                    <div class="block_3_img"></div>
+                </div>
+                <div class="block_4">
+                    <div class="block_4_img"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js'></script>
+<script src="main.js"></script>
+</html>
