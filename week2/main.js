@@ -10,7 +10,8 @@ var app = new Vue({
         selectedLocation:'全部',
         freeTicket:false,
         allDayOpen:false,
-        info:[]
+        info:[],
+        nowPage:0
     },
     methods:{
         pagination:function () {
@@ -21,6 +22,7 @@ var app = new Vue({
     },
     computed:{
         data:function () {
+            this.nowPage = 0;
             var res = this.info;
             var result = [];
             if (this.freeTicket === true && this.allDayOpen === true) {
@@ -59,6 +61,18 @@ var app = new Vue({
                 })
                 return result
             }
+        },
+        filterData: function () {
+            const vm = this;
+            const newData = [];
+            this.sortData.forEach(function(item, i) {
+                if( i % 10 == 0){
+                    newData.push([])
+                }
+                const page = parseInt(i / 10);
+                newData[page].push(item);
+            })
+            return newData;
         },
         addTag:function () {
             if (this.freeTicket === true && this.allDayOpen === true) {

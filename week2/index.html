@@ -45,7 +45,7 @@
                 <!-- 標籤    -->
                 <span class="tag-lists" v-for="(tags, index) in addTag">{{ tags }}<i class="far fa-times-circle"></i></span>
                 <!-- 資訊 -->
-                <div class="item" v-for="(item, index) in sortData">
+                <div class="item" v-for="(item, index) in filterData[nowPage]">
                     <div class="item-picture">
                         <img :src="item.Picture1" alt="">
                     </div>
@@ -62,11 +62,9 @@
             </div>
             <div class="clear"></div>
             <ul class="pagination">
-                <li class="pre" @click="pagination"><</li>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li class="next">></li>
+                <li v-for="item in filterData.length" :class="{active: nowPage === item - 1}" @click.prevent="nowPage = item - 1" >
+                    <a href="#">{{ item }}</a>
+                </li>
             </ul>
         </div>
         </div>

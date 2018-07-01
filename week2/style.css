@@ -121,7 +121,6 @@ ul {
   border: 1px solid #ECEEEF;
   background-color: #fff;
   cursor: pointer;
-  color: #9013FE;
   font-size: 16px;
 }
 
@@ -131,6 +130,22 @@ ul {
 
 .pagination li:last-child {
   border-radius: 0 4px 4px 0;
+}
+
+.pagination li:hover {
+  background-color: #ccc;
+}
+
+.pagination li.active {
+  background-color: #7828B4;
+}
+
+.pagination li.active a {
+  color: #fff;
+}
+
+.pagination li a {
+  text-decoration: none;
 }
 
 @media screen and (max-width: 767px) {
