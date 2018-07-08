@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- css -->
+    <link rel="stylesheet" href="Normalize.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900i" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="page">
+        <header>
+            Comicomic
+        </header>
+        <div class="container">
+            <div class="controlBar">
+                <a href="index.html" class="breadcrumb">My Hexschool</a>
+                <select name="" id="" class="handler_chapter">
+                    <option value="chapter1">chapter1</option>
+                </select>
+                <!-- <select name="" id="" class="handler_pages" v-model="pageIndex">
+                    <option value="" v-for="item in pagesMax">page{{ item }}</option>
+                </select> -->
+            </div>
+            <div class="comic_content">
+                <div class="control_pre" @click="control_pre">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="comic_view">
+                    <img :src="comicViewSrc" alt="">
+                </div>
+                <div class="control_next" @click="control_next">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            <div class="comic_slider">
+                <div class="slider_preChapter">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="slider_content" :style="sliderStyle">
+                    <div class="miniPage" v-for="(page, index) in pages" :class="{active : index == pageIndex}" @click="handelMiniPage(index)">
+                        <div class="page_number" v-if="index != pageIndex">{{ index + 1 }}</div>
+                        <div class="imgBox ">
+                            <img :src="page" alt="">
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="slider_nextChapter">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js'></script>
+<script src="main.js"></script>
+
+</html>
