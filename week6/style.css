@@ -1,0 +1,90 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  max-width: 456px;
+  margin: auto;
+  position: relative;
+}
+
+.container:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 456px;
+  height: 3px;
+  background-color: #0275D8;
+}
+
+.progressBar {
+  font-size: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.progressBar .step {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #0275D8;
+  background-color: #fff;
+  position: relative;
+}
+
+.progressBar .step:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: #0275D8;
+}
+
+.progressBar .step:not(:first-child):before {
+  content: "";
+  width: 116px;
+  height: 2px;
+  background-color: #0275D8;
+  position: absolute;
+  right: 18px;
+  top: 50%;
+}
+
+.form-group {
+  position: relative;
+}
+
+.fas {
+  display: none;
+  position: absolute;
+  color: #F5A623;
+  right: 5%;
+  top: 60%;
+}
+
+input.wrong {
+  border: 2px solid #F5A623 !important;
+}
+
+input.wrong + .fas {
+  display: block;
+}
+
+.file_btn {
+  display: none;
+  height: 100%;
+}
+/*# sourceMappingURL=style.css.map */

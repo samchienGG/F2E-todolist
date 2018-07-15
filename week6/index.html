@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="root">
+        <div class="container">
+            <div class="progressBar pt-5 pb-5 ">
+                <div class="step"></div>
+                <div class="step"></div>
+                <div class="step"></div>
+                <div class="step"></div>
+            </div>
+            <form action="">
+                <div class="w-100 step1" v-if="step == 'step1'">
+                    <center class="w-100">
+                        <h1>Create Account</h1>
+                        <h3>Glad to see you here!</h3>
+                    </center>
+                    <div class="form-group">
+                        <label>Account</label>
+                        <input type="email" name="Email" v-model="email.content" @blur="checkEmail" :class="{wrong:email.state}" class="form-control form-control-lg border-dark"
+                            placeholder="example@email.com">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="Password" v-model="password.content" @blur="checkPassword" :class="{wrong:password.state}" class="form-control form-control-lg border-dark">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="form-group">
+                        <label>Comfirm Password</label>
+                        <input type="password" name="ComfirmPassword" v-model="ComfirmPassword.content" @blur="checkComfirmPassword" :class="{wrong:ComfirmPassword.state}"
+                            class="form-control form-control-lg border-dark">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-primary w-100" :disabled="!step1Btn" @click.prevent="step = 'step2'">SUBMIT & NEXT</button>
+                </div>
+                <div class="step2" v-else-if="step == 'step2'">
+                    <center class="w-100">
+                        <h1>General Infomation</h1>
+                        <h3>Tell us who you are!</h3>
+                    </center>
+                    <div class="form-row m-0">
+                        <div class="form-group col-6 pl-0">
+                            <label>Name (optional)</label>
+                            <input type="text" name="Name" class="form-control form-control-lg border-dark" placeholder="Example Name">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="form-group col-6 pr-0">
+                            <label>Phone*</label>
+                            <input type="Phone" name="Phone" class="form-control form-control-lg border-dark" placeholder="0912 345 678" v-model="phone.content"
+                                @blur="checkPhone" :class="{wrong:phone.state}">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="form-group w-100">
+                            <label>Birth Date (optional)<i class="fas fa-exclamation-triangle"></i></label>
+                            <div class="form-row m-0">
+                                <div class="col-4 pl-0">
+                                    <select name="birthYear" v-model="birthDate.year" class="custom-select custom-select-lg border-dark" placeholder="YYYY">
+                                        <option :value="yy + 1900 -1 " v-for="yy in 2018 - 1900 + 1">{{ yy + 1900 -1 }}</option>
+                                    </select>
+                                    
+                                </div>
+                                <div class="col-4">
+                                    <select name="birthMonth" v-model="birthDate.month" class="custom-select custom-select-lg border-dark" placeholder="MM">
+                                        <option :value="mm" v-for="mm in 12">{{ mm }}月</option>
+                                    </select>
+                                </div>
+                                <div class="col-4 pr-0">
+                                    <select name="birthDay" v-model="birthDate.day" class="custom-select custom-select-lg border-dark" placeholder="DD">
+                                        <option :value="dd" v-for="dd in 31">{{ dd }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            Address*
+                        </div>
+                        <div class="form-group col-6 pl-0">
+                            <select name="Name" v-model="address.city" class="custom-select custom-select-lg border-dark" placeholder="City">
+                                <option :value="item" v-for="item in address.cityData">{{ item }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-6 pr-0">
+                            <select v-model="address.region" class="custom-select custom-select-lg border-dark" placeholder="Dist">
+                                <option :value="item" v-for="item in addressData">{{ item }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-12 p-0">
+                            <input type="address" name="address" v-model="address.addressContent" class="form-control form-control-lg border-dark">
+                        </div>
+                    </div>
+                    <button type="submit" @click.prevent="step = 'step3'" class="btn btn-lg btn-primary w-100">SUBMIT & NEXT</button>
+                </div>
+                <div class="step3" v-else-if="step == 'step3'">
+                    <center class="w-100">
+                        <h1>Update Profile Picture</h1>
+                        <h3>We wanna know you more!</h3>
+                    </center>
+                    <div class="file_upload border border-dark rounded d-flex justify-content-center align-items-center mb-3">
+                        <label for="file_btn" class="w-100 h-100 p-5 m-0">
+                            <p class="m-0">UPLOAD UP TO 3 PHOTOS</p>
+                            <p class="m-0">MAXIMUM SIZE: 150*150px</p>
+                        </label>
+                        <input type="file" id="file_btn" class="file_btn w-100">
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4">
+                            <div class="upload_image">
+                                <img src="https://fakeimg.pl/350x350/ff0000,128/000,255" class="w-100">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="upload_image">
+                                <img src="https://fakeimg.pl/350x350/ff0000,128/000,255" class="w-100">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="upload_image">
+                                <img src="https://fakeimg.pl/350x350/ff0000,128/000,255" class="w-100">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-lg btn-primary w-100"  @click.prevent="step = 'step4'">SUBMIT & NEXT</button>
+                </div>
+                <div class="w-100 step4" v-else-if="step == 'step4'">
+                    <center class="w-100">
+                        <h1>Payment Method</h1>
+                        <h3>Add your credit card infomation! </h3>
+                    </center>
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <input type="text" class="form-control form-control-lg border-dark">
+                    </div>
+                    <div class="form-row m-0">
+                        <div class="form-group col-6 pl-0">
+                            <label>Cardholder Name</label>
+                            <input type="text" name="Name" class="form-control form-control-lg border-dark">
+                        </div>
+                        <div class="form-group col-6 pr-0">
+                            <label>Bank Name</label>
+                            <input type="text" name="" class="form-control form-control-lg border-dark">
+                        </div>
+                        <div class="form-group col-4 pl-0">
+                            <label>CCV</label>
+                            <input type="text" name="" class="form-control form-control-lg border-dark">
+                        </div>
+                        <div class="form-group col-4">
+                            <label class="d-block">Expire Date</label>
+                            <select class="custom-select custom-select-lg border-dark d-inline-block" placeholder=""></select>
+                        </div>
+                        <div class="form-group col-4 pr-0">
+                            <label class="d-block invisible">Expire Date</label>
+                            <select class="custom-select custom-select-lg border-dark d-inline-block" placeholder=""></select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-primary w-100">SUBMIT & NEXT</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js'></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
